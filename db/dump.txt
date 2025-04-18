@@ -1,0 +1,19 @@
+MySql Database Backup with Partitioned
+mysqldump -u root -p your_database your_table --where="id BETWEEN 1 AND 10000" > backup_part1.sql
+mysqldump -u root -p your_database your_table --where="id BETWEEN 10001 AND 20000" > backup_part2.sql
+  
+Mysql Full Backup
+mysqldump -u root -p  your_database > backup.sql
+
+MongodDB Full Backup
+mongodump --db your_db --out /backups
+
+MongoDB Collection Backup
+mongodump --db your_db --collection your_collection --out /backups
+
+MongoDB Partitioned Backup
+mongodump --db your_db --collection your_collection \
+  --query '{"created_at": {"$gte": {"$date": "2024-01-01T00:00:00Z"}, "$lt": {"$date": "2024-04-01T00:00:00Z"}}}' \
+  --out /backups/q1_backup
+
+
