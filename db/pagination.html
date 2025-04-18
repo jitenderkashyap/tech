@@ -1,0 +1,16 @@
+Database | Deep Pagination | Efficient Method for Deep Pagination | Comments
+Elasticsearch | ⚠️ Limited (10K max by default) | search_after + sort, or PIT | Best for search use cases
+MySQL | ✅ Yes, but slow | LIMIT, better: WHERE id > ? ORDER BY id | Keyset recommended
+PostgreSQL | ✅ Yes, but slow | Same as MySQL | Strong SQL features
+Redis | ❌ Not ideal | SCAN, ZSCAN, LRANGE | Good for real-time/top-N
+MongoDB | ✅ Yes, slow skip | find({ _id > last }) LIMIT n | Keyset-style with _id
+
+
+Use Case | Best Tool
+Full-text search | Elasticsearch
+Relational pagination | PostgreSQL / MySQL
+High-speed top lists | Redis
+Document-style queries | MongoDB
+Real-time UI pagination | MySQL/PostgreSQL with keyset
+
+
